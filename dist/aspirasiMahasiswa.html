@@ -20,13 +20,12 @@
         }
     </style>
     <body onload="readAsp()">
-
         <!-- Modal Edit Form-->
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Aspirasi dan Keluhan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -44,6 +43,9 @@
                           <div class="form-group">
                             <label for="inputDeskripsi">Deskripsi</label>
                             <textarea type="text" class="form-control inputDeskripsiEdit" id="inputDeskripsiEdit" placeholder="deskripsi" disabled rows="6" cols="70"></textarea>
+                          </div>
+                          <div class="form-group" type="hidden">
+                            <input type="hidden" class="form-control inputNamaPengirimEdit" id="inputNamaPengirimEdit" placeholder="email" disabled rows="6" cols="70"></textarea>
                           </div>
                         </form>
                         </div>
@@ -107,12 +109,7 @@
                             </a>
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="campaign.html">Campaign</a>
-                                    <a class="nav-link" href="usulanCampaign.html">Usulan Campaign</a>
-                                    <a class="nav-link" href="kategoriCampaign.html">Kategori Campaign</a>
-                                    <a class="nav-link" href="donasi.html">Laporan Donasi</a>
-                                      <div class="sb-sidenav-collapse-arrow"></div>
-                                    </a>
+                                    <a class="nav-link " href="donasi.html">
                                         Donasi
                                     </a>
                                 </nav>
