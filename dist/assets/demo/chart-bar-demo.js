@@ -30,32 +30,13 @@ firebase.firestore().collection('Campaign').limit(5).orderBy("danaTerkumpul","de
             },
             options: {
               scales: {
-                xAxes: [{
-                  time: {
-                    unit: 'date'
-                  },
-                  gridLines: {
-                    display: false
-                  },
-                  ticks: {
-                    maxTicksLimit: 7
-                  }
-                }],
-                yAxes: [{
-                  ticks: {
-                    min: 0,
-                    max: 1200000000,
-                    maxTicksLimit: 5
-                  },
-                  gridLines: {
-                    color: "rgba(0, 0, 0, .125)",
-                  }
-                }],
-              },
-              legend: {
-                display: false
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
               }
-            }
+          }
           });
         }
       });
