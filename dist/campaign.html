@@ -293,13 +293,9 @@
               </nav>
             </div>
             <div class="sb-sidenav-menu-heading">Addons</div>
-            <a class="nav-link" href="charts.html">
-              <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+            <a class="nav-link" href="#" onclick="signOut()">
+              <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
               Logout
-            </a>
-            <a class="nav-link" href="tables.html">
-              <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-              Tables
             </a>
           </div>
         </div>
@@ -359,27 +355,13 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
-  <script src="js/scripts.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
-  <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyDzdN5Ies6hxarwNYKcAIe296Znmij922k",
-      authDomain: "flutter-c76ac.firebaseapp.com",
-      databaseURL: "https://flutter-c76ac.firebaseio.com",
-      projectId: "flutter-c76ac",
-      storageBucket: "flutter-c76ac.appspot.com",
-      messagingSenderId: "241175124681",
-      appId: "1:241175124681:web:cd82d5dba795e0765a0b18",
-      measurementId: "G-HZ55R99NMK"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    console.log(firebase)
-  </script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/scripts.js"></script>
   <script src="js/campaign.js"></script>
   <script src="js/coba.js"></script>
 </body>
