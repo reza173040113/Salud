@@ -103,7 +103,7 @@ $('#edit-newhero-button').click(function post(){
           isEnable: "y",
           namaPengirim: $("#inputNamaPengirimEdit").val(),
         })
-        .then(() => {alert("Aspirasi dan Keluhan berhasil di post!!!");})
+        .then(() => {alert("Aspirasi dan Keluhan berhasil di post!!!"); $('#editModal').modal('hide'); })
         .catch(error  => {console.error(error)});
   
 });
@@ -153,3 +153,4 @@ function searching() {
     }
   }
 }
+
