@@ -44,7 +44,7 @@ function detailShow(id) {
 </div>
           <p class="deskTitle"><b>Deskripsi :</b></p>
           <p class="card-text" style="font-size: 14px;">${campaign.deskripsi}</p>
-          <p class="card-text" style="font-size: 14px;">${campaign.isEnable}</p>
+          <p class="card-text" style="font-size: 14px; display : none;">${campaign.isEnable}</p>
         </div>
       </div>
     `
