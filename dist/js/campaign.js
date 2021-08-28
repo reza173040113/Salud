@@ -351,7 +351,7 @@ function imageAdd(ref, name, file, metadata) {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const image = document.querySelector('#imageAdd')
       image.src = url
       document.getElementById("gambarCampaignAdd").value = url
