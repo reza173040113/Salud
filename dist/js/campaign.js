@@ -339,9 +339,6 @@ function editCampaign() {
   }else{
     return false;
   }
- 
-
-
 
 }
 
