@@ -44,7 +44,7 @@ function detailShow(id) {
 </div>
           <p class="deskTitle"><b>Deskripsi :</b></p>
           <p class="card-text" style="font-size: 14px;">${campaign.deskripsi}</p>
-          <p class="card-text" style="font-size: 14px;">${campaign.isEnable}</p>
+          <p class="card-text" style="font-size: 14px; display : none;">${campaign.isEnable}</p>
         </div>
       </div>
     `
@@ -339,9 +339,6 @@ function editCampaign() {
   }else{
     return false;
   }
- 
-
-
 
 }
 
@@ -351,7 +348,7 @@ function imageAdd(ref, name, file, metadata) {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const image = document.querySelector('#imageAdd')
       image.src = url
       document.getElementById("gambarCampaignAdd").value = url

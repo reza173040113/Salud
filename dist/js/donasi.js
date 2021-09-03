@@ -1,6 +1,6 @@
 
 const database = firebase.firestore();
-const userCollection = database.collection('Campaign');
+const userCollection = database.collection('Donasi');
 var statusAdd = false;
 var campaign;
 
@@ -18,18 +18,45 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
 function detailShow(id) {
     userCollection.doc(id).get()
-        .then(campaigns => {
-            campaign = campaigns.data();
-            if (campaigns.exists)
+        .then(donasis => {
+            donasi = donasis.data();
+            var date = new Date(donasi.tanggal * 1000);
+           
+            if (donasis.exists)
+
                 document.getElementById("detailSection").innerHTML += `
-        <img class="card-img-top" src="${campaign.gambarCampaign}" alt="Card image cap">
+     
         <div class="card-body">
-          <h4 class="card-title">${campaign.namaCampaign}</h4>
-          <p class="card-text kategori"> Kategori ${campaign.kategori}</p>
-          <p class="card-text dana">Dana yang terkumpul ${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(campaign.danaTerkumpul)} dari ${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(campaign.danaCampaign)}</p>
-          <p class="deskTitle">Deskripsi :</p>
-          <p class="card-text">${campaign.deskripsi}</p>
-        </div>
+        <table class="table">
+        <tr>
+        <td>Nama Donatur</td>
+        <td>${donasi.namaDonatur}</td>
+        </tr>
+        <tr> 
+        <td>Email</td>
+        <td>${donasi.email}</td>
+        </tr>
+        <tr>
+        <td>Nomor Telp</td>
+        <td>${donasi.nomor}</td>
+        </tr>
+        <tr>
+        <td>Nama Campaign</td>
+        <td>${donasi.namaCampaign}</td>
+        </tr>
+        <tr>
+        <td>Jumlah Donasi</td>
+        <td>${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(donasi.totalAmount)}</td>
+        </tr>
+        <tr>
+        <td>Status transaksi</td>
+        <td>${donasi.status}</td>
+        </tr>
+        <tr>
+        <td>Tanggal transaksi</td>
+        <td>${date}</td>
+        </tr>
+        </table>
       </div>
         
     `
@@ -69,6 +96,7 @@ function readDonasi() {
                   <th scope="col">nomor</th>
                   <th scope="col">jumlah</th>
                   <th scope="col">status</th>
+                  <th scope="col">Action</th>
                   
  
         </tr>
@@ -85,6 +113,10 @@ function readDonasi() {
                 <td class= "nomor">${donasi.nomor}</td>
                 <td class="danaKebutuhan">${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(donasi.totalAmount)}</td>
                <td class= "nomor">${donasi.status}</td>
+               <td>
+                 <button type="button" id="detail-btn"  class="btn btn-success" onclick="detailShow('${donasiValue.id}')" data-toggle="modal" data-target="#detailModal">Details</button>
+                
+            </td>
                             
                 
               </tr>
@@ -93,6 +125,47 @@ function readDonasi() {
         });
     });
 }
+
+// function readDonasi() {
+//     firebase.firestore().collection("Donasi").onSnapshot(function (snapshot) {
+//         document.getElementById("table").innerHTML = `<thead class="thead-dark">
+//           <tr>
+
+//                   <th scope="col" width="50 px">#</th>
+//                   <th scope="col">Nama Donatur</th>
+//                   <th scope="col" width="150 px">email</th>
+//                   <th scope="col">nomor</th>
+//                   <th scope="col">jumlah</th>
+//                   <th scope="col">status</th>
+//                   <th scope="col">Action</th>
+
+
+//         </tr>
+//       </thead>`;
+//         var i = 1;
+//         snapshot.forEach(function (donasiValue) {
+//             var donasi = donasiValue.data();
+//             document.getElementById("table").innerHTML += `
+//               <tbody>
+//               <tr>
+//                 <th scope="row">${i++}</th>
+//                 <td class="card-title nama">${donasi.namaDonatur}</td>
+//                 <td class="email">${donasi.email}</td>
+//                 <td class= "nomor">${donasi.nomor}</td>
+//                 <td class="danaKebutuhan">${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(donasi.totalAmount)}</td>
+//                <td class= "nomor">${donasi.status}</td>
+//                <td>
+//                  <button type="button" id="detail-btn"  class="btn btn-success">Details</button>
+
+//             </td>
+
+
+//               </tr>
+//             </tbody>
+//   `
+//         });
+//     });
+// }
 
 // function readDonasi() {
 //   firebase.firestore().collection("Campaign").onSnapshot(function (snapshot) {
