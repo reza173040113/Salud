@@ -54,7 +54,7 @@ function detailShow(id) {
         </tr>
         <tr>
         <td>Tanggal transaksi</td>
-        <td>${date}</td>
+        <td>${(donasi.tanggal).toDate()}</td>
         </tr>
         </table>
       </div>
@@ -86,7 +86,7 @@ function readKategori() {
 }
 
 function readDonasi() {
-    firebase.firestore().collection("Donasi").onSnapshot(function (snapshot) {
+    firebase.firestore().collection("Donasi").orderBy("tanggal", "desc").onSnapshot(function (snapshot) {
         document.getElementById("table").innerHTML = `<thead class="thead-dark">
           <tr>
                   
