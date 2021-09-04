@@ -1,6 +1,8 @@
 const database = firebase.firestore();
 
 function readAsp() {
+  
+
     firebase.firestore().collection("Aspirasi").where("isEnable", "==", "n").onSnapshot(function (snapshot) {
     let html = '';
     let i = 1;
@@ -14,7 +16,7 @@ function readAsp() {
         <th scope="col">Nama Aspirasi</th>
         <th scope="col">Deskripsi</th>
         <th scope="col">Pengirim</th>
-        <th scope="col">Action</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>`;
    
@@ -46,7 +48,10 @@ function readAsp() {
 }
 
 function readPostAsp() {
- firebase.firestore().collection("Aspirasi").where("isEnable", "==", "y").onSnapshot(function (snapshot) {
+ 
+ var query = firebase.firestore().collection("Aspirasi")
+  query = query.where("isEnable","==","y")
+ query.onSnapshot(function (snapshot) {
     let html = '';
     let i = 1;
     console.log(snapshot.docs.length);
@@ -73,6 +78,7 @@ function readPostAsp() {
     } else {
       snapshot.forEach(function (aspirasiValue) {
       const aspirasi = aspirasiValue.data();
+      console.log("aspirasi "+aspirasi.tanggal);
       html += `
       <tbody class="table tbody">
         <tr>
@@ -120,18 +126,35 @@ $(document).on('click', '.edit-aspirasi-btn', function tampilById(){
   $('#inputNamaPengirimEdit').val(namaPengirim);
 
 });
-// $(document).ready(function() {
-//     var nama = $(this).closest('tr').find('.name').text();
-//   $('#table').DataTable({
-//             paging: true,
-//             searching: false,
-//                   processing: true,
-//     "aoColumnDefs": [
-//          { "aDataSort": [ 0, 1 ], "aTargets": [ 0 ] },
-//          { "aDataSort": [ 1, 0 ], "aTargets": [ 1 ] },
-//        ]
-//   });
-// });
+$(document).ready(function() {
+  var dataSet = [];
+  var i=1;
+  let db = firebase.firestore();
+  db.collection("Aspirasi").where('isEnable',"==","n").get().then((querySnapshot) =>{
+    querySnapshot.forEach((doc)=> {
+      dataSet.push([doc.data().name, doc.data().deskripsi, doc.data().namaPengirim]);
+      i=i+1;
+    });
+
+  });
+  console.log(dataSet);
+   $('#table').DataTable({
+    dom: 'Bfrtip',
+    buttons: ['pdf', 'print'],
+    data:dataSet,
+    "columns": [
+          {'data':'name'},
+          {'data':'deskripsi'},
+          {'data':'namaPengirim'},
+        ],
+    searching: false,
+    "aoColumnDefs": [
+         { "aDataSort": [ 0, 1 ], "aTargets": [ 0 ] },
+         { "aDataSort": [ 1, 0 ], "aTargets": [ 1 ] },
+       ]
+  });
+  
+});
 
 
 function searching() {
@@ -153,4 +176,55 @@ function searching() {
     }
   }
 }
+
+function filter(){
+var tanggal = $("#datepicker").val();
+var timestamp;
+ timestamp = firebase.firestore.Timestamp.fromDate(new Date(tanggal));
+  firebase.firestore().collection("Aspirasi").where("tanggal", ">=", timestamp).onSnapshot(function (snapshot) {
+    let html = '';
+    let i = 1;
+    console.log(snapshot.docs.length);
+    const data = document.getElementById("table");
+
+    html += `
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nama Aspirasi</th>
+        <th scope="col">Deskripsi</th>
+        <th scope="col">Pengirim</th>
+        <th scope="col">Aksi</th>
+      </tr>
+    </thead>`;
+   
+    if (snapshot.docs.length == 0) {
+      html += `
+      <tbody class="table tbody">
+        <tr>
+            <td colspan="4"><h1 style="text-align:center">Belum ada aspirasi</h1></td>
+        </tr>
+      </tbody>`
+    } else {
+      snapshot.forEach(function (aspirasiValue) {
+      const aspirasi = aspirasiValue.data();
+      html += `
+      <tbody class="table tbody">
+        <tr>
+          <th scope="row">${i++}</th>
+          <td class="table tbody name">${aspirasi.name}</td>
+          <td class="table tbody deskripsi">${aspirasi.deskripsi}</td>
+          <td class="table tbody namaPengirim">${aspirasi.namaPengirim}</td>
+          <td><button type="button" id="edit-aspirasi-btn" data-heroId="${aspirasiValue.id}" class="btn btn-success edit-aspirasi-btn" data-toggle="modal" data-target="#editModal">Post</button></td>
+        </tr>
+      </tbody>`
+      });
+    }
+  
+    data.innerHTML = html;
+  });
+ 
+}
+
+
 
