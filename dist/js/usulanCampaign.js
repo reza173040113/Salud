@@ -23,15 +23,15 @@ function readKategoriEdit() {
 
 
 function readUsulanCampaign() {
-    firebase.firestore().collection("UsulanCampaign").onSnapshot(function (snapshot) {
+    firebase.firestore().collection("UsulanCampaign").orderBy("tanggal", "desc")
+    .onSnapshot(function (snapshot) {
         document.getElementById("table").innerHTML = `<thead class="thead-dark">
           <tr>
                   
                   <th scope="col" width="50 px">#</th>
                   <th scope="col" width="150 px">Nama Pengusul</th>
-                  <th scope="col" width="150 px">email</th>
-                  <th scope="col" width="150 px">nomor</th>
-                  <th scope="col">Usulan Campaign</th>
+                  <th scope="col" width="190 px">email</th>
+                  <th scope="col" width="300 px">Nama Campaign</th>
                   <th scope="col" width="180 px">Tanggal</th>
                   <th scope="col">Action</th>
                   
@@ -47,9 +47,9 @@ function readUsulanCampaign() {
                 <th scope="row">${i++}</th>
                 <td class="card-title namaPengusul">${usulan.namaPengusul}</td>
                 <td class="email">${usulan.email}</td>
-                <td class= "nomor">${usulan.phoneNumber}</td>
-                <td class="usulanCampaign">${usulan.usulanCampaign}</td>
-               <td class= "tanggal">${Date(usulan.tanggal)}</td>
+                <td class= "nomor">${usulan.namaCamp}</td>
+                <td class="usulanCampaign" style=" display:none">${usulan.usulanCampaign}</td>
+               <td class= "tanggal">${(usulan.tanggal).toDate()}</td>
                <td class="gambar" style="display:none"><p>${usulan.gambarCampaign}</p></td>
                <td class= "namaCampaign" style=" display:none">${usulan.namaCamp}</td>
                <td class="kategori" style=" display:none">${usulan.kategori}</td>
@@ -156,6 +156,18 @@ function addCampaign(campaign) {
 
 
 }
+function uploadImageEdit() {
+  const ref = firebase.storage().ref()
+  const file = document.querySelector("#photoEdit").files[0]
+  const name = new Date() + '-' + file.name
+
+  const metadata = {
+    contentType: file.type
+  }
+
+  imageEdit(ref, name, file, metadata);
+}
+
 
 function imageEdit(ref, name, file, metadata) {
   const task = ref.child(name).put(file, metadata)
@@ -164,7 +176,7 @@ function imageEdit(ref, name, file, metadata) {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(urlEdit => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const imageEdit = document.querySelector('#imageEdit')
       imageEdit.src = urlEdit
       document.getElementById("gambarCampaignEdit").value = urlEdit

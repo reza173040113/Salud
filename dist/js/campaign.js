@@ -245,7 +245,7 @@ function readKategoriEdit() {
 }
 
 function readCampaign() {
-  firebase.firestore().collection("Campaign").onSnapshot(function (snapshot) {
+  firebase.firestore().collection("Campaign").orderBy("tanggal", "desc").onSnapshot(function (snapshot) {
     document.getElementById("table").innerHTML = `<thead class="thead-dark">
         <tr>
         <th scope="col" width="50 px">#</th>

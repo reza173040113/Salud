@@ -62,7 +62,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Campaign</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Publish Campaign</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -71,7 +71,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12" id="firstSection">
-                <form>
+                <form name="editForm">
                   <input type="hidden" class="form-control" id="campaignId">
                   <div class="form-group">
                     <label for="namaCampaignEdit">Judul Campaign</label>
@@ -94,15 +94,16 @@
                   </div>
                   <div class="form-group">
                     <label for="deskripsiEdit">deskripsi</label>
-                    <input type="text" class="form-control" id="deskripsiEdit" name="inputEmail"
-                      placeholder="deskripsi">
+                    <!-- <input type="text" class="form-control" id="deskripsiEdit" name="inputEmail"
+                      placeholder="deskripsi"> -->
+                      <textarea rows="5" cols="56" form="editForm" style="border: 1px solid #888;" placeholder="Deskripsi.." id="deskripsiEdit" name="deskripsiEdit"  required></textarea><p id="validationFormDeskripsi"></p>
                   </div>
                   <div class="form-group">
                     <input type="hidden" class="form-control" id="danaTerkumpulEdit" name="inputEmail"
                       >
                   </div>
                   <div class="form-group">
-                    <input type="hidden" class="form-control" id="gambarCampaignEdit" name="inputEmail"
+                    <input type="text" class="form-control" id="gambarCampaignEdit" name="inputEmail"
                       placeholder="gambar">
                   </div>
 
@@ -137,7 +138,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button class="btn btn-primary" id="edit-campaign-button" data-dismiss="modal" id="editBtn"
-            type="submit"  onclick="editCampaign()">Edit</button>
+            type="submit"  onclick="editCampaign()">Publish</button>
         </div>
       </div>
     </div>
@@ -300,10 +301,10 @@
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid">
-          <h1 class="mt-4">Campaign</h1>
+          <h1 class="mt-4">Usulan Campaign</h1>
           <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-            <li class="breadcrumb-item active">Campaign</li>
+            <li class="breadcrumb-item active">Usulan Campaign</li>
           </ol>
           <div class="container-fluid">
             <div class="input-group">
