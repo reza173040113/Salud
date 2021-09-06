@@ -126,35 +126,82 @@ $(document).on('click', '.edit-aspirasi-btn', function tampilById(){
   $('#inputNamaPengirimEdit').val(namaPengirim);
 
 });
-$(document).ready(function() {
-  var dataSet = [];
-  var i=1;
-  let db = firebase.firestore();
-  db.collection("Aspirasi").where('isEnable',"==","n").get().then((querySnapshot) =>{
+ $(document).ready(function() {
+   
+      let array = [];
+       var i=1;
+    let db = firebase.firestore();
+  db.collection("Aspirasi").where('isEnable',"==","y").get().then((querySnapshot) =>{
     querySnapshot.forEach((doc)=> {
-      dataSet.push([doc.data().name, doc.data().deskripsi, doc.data().namaPengirim]);
+      array.push([i,doc.data().name, doc.data().deskripsi, doc.data().namaPengirim,doc.data().jumlahLike]);
       i=i+1;
     });
+    array.push();
 
-  });
-  console.log(dataSet);
-   $('#table').DataTable({
-    dom: 'Bfrtip',
-    buttons: ['pdf', 'print'],
-    data:dataSet,
-    "columns": [
-          {'data':'name'},
-          {'data':'deskripsi'},
-          {'data':'namaPengirim'},
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        data:array,
+        buttons: [
+             'pdf'
         ],
-    searching: false,
+       
+        "columns": [
+          {'title':'#'},
+          {'title':'Name'},
+          {'title':'Deskripsi'},
+          {'title':'Nama Pengirim'},
+          {'title':'Jumlah Like'},
+          
+                    
+
+        ],
+        searching: false,
     "aoColumnDefs": [
          { "aDataSort": [ 0, 1 ], "aTargets": [ 0 ] },
          { "aDataSort": [ 1, 0 ], "aTargets": [ 1 ] },
        ]
+    } );
+
   });
+  console.log(array);
+    
+} );
+// $(document).ready(function() {
+//   var i=1;
+//     var dataSet = [];
+
+//   let db = firebase.firestore();
+//   db.collection("Aspirasi").where('isEnable',"==","n").get().then((querySnapshot) =>{
+//     querySnapshot.forEach((doc)=> {
+//       dataSet.push([doc.data().name, doc.data().deskripsi, doc.data().namaPengirim]);
+//       i=i+1;
+//     });
+//     dataSet.push();
+//     $('#table').DataTable( {
+//         dom: 'Bfrtip',
+//         data:dataSet,
+//         buttons: [
+//             'copy', 'csv', 'excel', 'pdf', 'print'
+//         ],
+       
+//         "columns": [
+//           {'title':'Name'},
+//           {'title':'Deskripsi'},
+//           {'title':'Nama Pengirim'},
+                    
+
+//         ],
+//         searching: false,
+//     "aoColumnDefs": [
+//          { "aDataSort": [ 0, 1 ], "aTargets": [ 0 ] },
+//          { "aDataSort": [ 1, 0 ], "aTargets": [ 1 ] },
+//        ]
+//     } );
+//   });
+//   // console.log(dataSet);
+
   
-});
+// });
 
 
 function searching() {
