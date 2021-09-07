@@ -363,7 +363,7 @@ function imageEdit(ref, name, file, metadata) {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(urlEdit => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const imageEdit = document.querySelector('#imageEdit')
       imageEdit.src = urlEdit
       document.getElementById("gambarCampaignEdit").value = urlEdit

@@ -183,7 +183,7 @@ function uploadImageAdd() {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const image = document.querySelector('#imageAdd')
       image.src = url
       document.getElementById("gambarKategoriAdd").value = url
@@ -209,7 +209,7 @@ function uploadImageEdit() {
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(urlEdit => {
 
-      alert("Image Upload Successful")
+      // alert("Image Upload Successful")
       const imageEdit = document.querySelector('#imageEdit')
       imageEdit.src = urlEdit
       document.getElementById("gambarKategoriEdit").value = urlEdit

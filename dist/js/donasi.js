@@ -92,10 +92,10 @@ function readDonasi() {
                   
                   <th scope="col" width="50 px">#</th>
                   <th scope="col">Nama Donatur</th>
-                  <th scope="col" width="150 px">email</th>
-                  <th scope="col">nomor</th>
-                  <th scope="col">jumlah</th>
-                  <th scope="col">status</th>
+                  <th scope="col" width="150 px">Email</th>
+                  <th scope="col" width="200 px">Nama Campaign</th>
+                  <th scope="col">Jumlah</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Action</th>
                   
  
@@ -110,7 +110,7 @@ function readDonasi() {
                 <th scope="row">${i++}</th>
                 <td class="card-title nama">${donasi.namaDonatur}</td>
                 <td class="email">${donasi.email}</td>
-                <td class= "nomor">${donasi.nomor}</td>
+                <td class= "nomor">${donasi.namaCampaign}</td>
                 <td class="danaKebutuhan">${Intl.NumberFormat('id-ID', { style: "currency", currency: "IDR" }).format(donasi.totalAmount)}</td>
                <td class= "nomor">${donasi.status}</td>
                <td>
